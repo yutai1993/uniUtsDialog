@@ -29,6 +29,7 @@ public class UtsDialog {
         String maskColor = options.optString("maskColor", "#4D000000");
         // 是否显示取消按钮
         boolean showCancel = options.optBoolean("showCancel", false);
+        boolean cancelable = options.optBoolean("cancelable", false);
         // 弹窗标识ID 用于回调回传
         String dialogId = options.optString("id");
         CustomDialog.show(new OnBindView<CustomDialog>(R.layout.layout_custom_dialog) {
@@ -108,6 +109,7 @@ public class UtsDialog {
                     }
                 })
                 .setMaskColor(Color.parseColor(maskColor))
+                .setCancelable(cancelable)
                 .setAutoUnsafePlacePadding(false);
 
     }
