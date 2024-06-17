@@ -1,7 +1,7 @@
 package com.qishi.utsdialog;
 
-import org.json.JSONObject;
 import android.webkit.WebView;
+import org.json.JSONObject;
 
 public interface DialogCallback {
     void onConfirm(JSONObject data);

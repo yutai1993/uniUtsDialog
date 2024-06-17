@@ -34,6 +34,10 @@ public class UtsDialog {
         CustomDialog.show(new OnBindView<CustomDialog>(R.layout.layout_custom_dialog) {
                     @Override
                     public void onBind(final CustomDialog dialog, View v) {
+                        // 设置title
+                        TextView tvTitle;
+                        tvTitle = v.findViewById(R.id.tv_title);
+                        tvTitle.setText(title);
                         // showCancel为true并cancelText传入时显示取消按钮
                         if (showCancel && !cancelText.isEmpty()) {
                             TextView btnCancel;
