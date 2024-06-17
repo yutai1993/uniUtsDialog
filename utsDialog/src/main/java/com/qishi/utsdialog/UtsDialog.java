@@ -16,12 +16,6 @@ public class UtsDialog {
         //初始化
         DialogX.init(context);
     }
-    public interface DialogCallback {
-        void onConfirm(JSONObject data);
-        void onCancel(JSONObject data);
-        // shouldOverrideUrlLoading
-        void onShouldOverrideUrlLoading(WebView view, String url);
-    }
     public static void dialogShow(JSONObject options, DialogCallback callback){
         // 标题title
         String title = options.optString("title");
