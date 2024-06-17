@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#00000000"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_corners"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp"
+            >
+        <!-- 标题居中 -->
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="标题"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="#000000"
+                android:paddingRight="16dp"/>
+
+        <!-- 内容 -->
+        <com.qishi.utsdialog.CustomWebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@android:color/transparent"
+                android:scrollbars="none"
+                android:overScrollMode="never"/>
+
+        <!-- 两个靠右的水平按钮 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:paddingTop="10dp"
+                android:paddingRight="16dp"
+                >
+            <TextView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="取消"
+                    android:layout_marginRight="35dp"
+                    android:textColor="#4EA1DB"
+            />
+
+            <TextView
+                    android:id="@+id/btn_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确定"
+                    android:textColor="#4EA1DB"
+            />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>
