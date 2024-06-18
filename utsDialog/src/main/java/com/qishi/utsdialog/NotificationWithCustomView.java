@@ -75,7 +75,7 @@ public class NotificationWithCustomView {
                                    @Override
                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                                        // 图片加载成功，显示通知
-                                       dialog.showLong().show(); // 显示通知
+                                       notification.show().showLong(); // 显示通知
                                        return false; // 返回false让Glide处理图片的显示
                                    }
                                })
