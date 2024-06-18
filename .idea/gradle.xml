@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/simpleDemo" />
+            <option value="$PROJECT_DIR$/socketManager" />
             <option value="$PROJECT_DIR$/utsDialog" />
           </set>
         </option>

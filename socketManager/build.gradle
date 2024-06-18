@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+task generateSourcesJar(type: Jar){
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+
+}
+android {
+    namespace 'com.socket.io.manager'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            group = 'com.github.yutai1993'
+            version = '1.0.0'
+            //发布release版本
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.findByName('release')
+                //groupId通常是自己的gitee或者GitHub的账户地址
+                groupId = group
+                //artifactId通常是指待发布项目的名称，也就是别名
+                artifactId = 'socketIoManager'
+                //version通常是指待发布项目的版本号，这里是写死的，通常我们取项目versionName
+                version = version
+            }
+        }
+    }
+}
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation ('io.socket:socket.io-client:2.1.0') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
+}
