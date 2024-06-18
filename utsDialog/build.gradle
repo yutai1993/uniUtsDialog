@@ -34,7 +34,7 @@ afterEvaluate {
         publications {
             // Creates a Maven publication called "release".
             group = 'com.github.yutai1993'
-            version = '1.0.14'
+            version = '1.0.16'
             //发布release版本
             release(MavenPublication) {
                 // Applies the component for the release build variant.
@@ -57,4 +57,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     def dialogx_version = "0.0.49"
     implementation "com.github.kongzue.DialogX:DialogX:${dialogx_version}"
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }

@@ -87,6 +87,14 @@ public class SocketManager {
             socket.disconnect();
         }
     }
+    /**
+     * 关闭连接
+     */
+    public void close() {
+        if (socket != null) {
+            socket.close();
+        }
+    }
 
     /**
      * 发送消息
