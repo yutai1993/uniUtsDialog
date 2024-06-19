@@ -8,6 +8,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 import com.kongzue.dialogx.DialogX;
 import com.kongzue.dialogx.dialogs.CustomDialog;
+import com.kongzue.dialogx.dialogs.PopTip;
 import com.kongzue.dialogx.interfaces.OnBindView;
 import org.json.JSONObject;
 
@@ -113,6 +114,12 @@ public class UtsDialog {
                 .setCancelable(cancelable)
                 .setAutoUnsafePlacePadding(false);
 
+    }
+    public static void tip(String message){
+        PopTip.build()
+                .setMessage(message)
+                .setRadius(10.0f)
+                .show();
     }
     public static void dismiss() {
         if (currentDialog != null) {
