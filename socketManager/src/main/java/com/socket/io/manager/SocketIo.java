@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 public class SocketIo {
     // 私有静态实例，类加载时不初始化
     private static SocketIo instance;
-    private Socket socket;
+    private static Socket socket;
     // 私有构造方法，防止外部通过new创建实例
     private SocketIo() {
     }
@@ -24,14 +24,14 @@ public class SocketIo {
         return instance;
     }
     // 初始化方法，接受配置参数
-    public void initialize(String serverUrl, IO.Options options) throws URISyntaxException {
-        if (this.socket == null) { // 确保socket只被初始化一次
-            this.socket = IO.socket(serverUrl, options);
+    public static void initialize(String serverUrl, IO.Options options) throws URISyntaxException {
+        if (socket == null) { // 确保socket只被初始化一次
+            socket = IO.socket(serverUrl, options);
         }
     }
 
     // 提供一个方法来获取socket实例，确保外部可以使用socket进行操作
     public Socket getSocket() {
-        return this.socket;
+        return socket;
     }
 }
