@@ -9,7 +9,9 @@ import android.widget.TextView;
 import com.kongzue.dialogx.DialogX;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.dialogs.PopTip;
+import com.kongzue.dialogx.interfaces.DialogXStyle;
 import com.kongzue.dialogx.interfaces.OnBindView;
+import com.kongzue.dialogx.style.IOSStyle;
 import org.json.JSONObject;
 
 public class UtsDialog {
@@ -117,6 +119,7 @@ public class UtsDialog {
     }
     public static void tip(String message){
         PopTip.build()
+                .setStyle(IOSStyle.style())
                 .setMessage(message)
                 .setRadius(10.0f)
                 .show();
