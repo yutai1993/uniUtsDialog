@@ -31,7 +31,7 @@ public class SocketIo {
     }
 
     // 提供一个方法来获取socket实例，确保外部可以使用socket进行操作
-    public Socket getSocket() {
+    public static Socket getSocket() {
         return socket;
     }
 }
