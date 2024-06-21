@@ -120,6 +120,7 @@ public class UtsDialog {
     public static void tip(String message){
         PopTip.build()
                 .setStyle(IOSStyle.style())
+                .setBackgroundColor(Color.parseColor("#FFFFFF"))
                 .setMessage(message)
                 .setRadius(10.0f)
                 .show();
