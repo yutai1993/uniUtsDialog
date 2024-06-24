@@ -15,7 +15,6 @@ import com.kongzue.dialogx.style.IOSStyle;
 import org.json.JSONObject;
 
 public class UtsDialog {
-    private static CustomDialog currentDialog = null; // 添加静态变量来持有对话框实例
     public static void init(Context context){
         //初始化
         DialogX.init(context);
@@ -36,7 +35,7 @@ public class UtsDialog {
         boolean cancelable = options.optBoolean("cancelable", false);
         // 弹窗标识ID 用于回调回传
         String dialogId = options.optString("id");
-        currentDialog = CustomDialog.show(new OnBindView<CustomDialog>(R.layout.layout_custom_dialog) {
+        CustomDialog.show(new OnBindView<CustomDialog>(R.layout.layout_custom_dialog) {
                     @Override
                     public void onBind(final CustomDialog dialog, View v) {
                         // 设置title
@@ -52,7 +51,7 @@ public class UtsDialog {
                             btnCancel.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    dismiss();
+                                    dialog.dismiss();
                                     JSONObject data = new JSONObject();
                                     // dialogId存在则回传
                                     if (!dialogId.isEmpty()) {
@@ -95,7 +94,7 @@ public class UtsDialog {
                         btnOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                dismiss();
+                                dialog.dismiss();
                                 JSONObject data = new JSONObject();
                                 // dialogId存在则回传
                                 if (!dialogId.isEmpty()) {
@@ -124,11 +123,5 @@ public class UtsDialog {
                 .setMessage(message)
                 .setRadius(10.0f)
                 .show();
-    }
-    public static void dismiss() {
-        if (currentDialog != null) {
-            currentDialog.dismiss();
-            currentDialog = null; // 清除引用，帮助垃圾收集器回收资源
-        }
     }
 }

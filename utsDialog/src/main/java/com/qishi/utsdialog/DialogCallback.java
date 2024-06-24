@@ -8,3 +8,4 @@ public interface DialogCallback {
     void onCancel(JSONObject data);
     void onShouldOverrideUrlLoading(WebView view, String url);
 }
+

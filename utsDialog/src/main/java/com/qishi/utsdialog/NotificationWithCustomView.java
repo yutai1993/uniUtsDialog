@@ -11,10 +11,9 @@ import com.kongzue.dialogx.dialogs.PopNotification;
 import com.kongzue.dialogx.interfaces.OnBindView;
 
 public class NotificationWithCustomView {
-    private static PopNotification notification;
 
     public static void show(Context context, String url, String title, String message, String btnText, String btnColor, final View.OnClickListener replyButtonClickListener) {
-        notification = PopNotification.build()
+        PopNotification.build()
                 .setCustomView(new OnBindView<PopNotification>(R.layout.notification_custom_view) {
                     @Override
                     public void onBind(PopNotification dialog, View v) {
@@ -36,7 +35,7 @@ public class NotificationWithCustomView {
                         replyButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                dismiss();
+                                dialog.dismiss();
                                 if (replyButtonClickListener != null) {
                                     replyButtonClickListener.onClick(v);
                                 }
@@ -46,11 +45,5 @@ public class NotificationWithCustomView {
                 })
                 .show()
                 .showLong();
-    }
-    public static void dismiss() {
-        if (notification != null) {
-            notification.dismiss();
-            notification = null;
-        }
     }
 }
