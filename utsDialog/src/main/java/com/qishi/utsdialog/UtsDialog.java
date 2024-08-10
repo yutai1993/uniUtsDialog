@@ -42,6 +42,12 @@ public class UtsDialog {
                         TextView tvTitle;
                         tvTitle = v.findViewById(R.id.tv_title);
                         tvTitle.setText(title);
+
+                        // 设置确定按钮
+                        TextView btnOk;
+                        btnOk = v.findViewById(R.id.btn_ok);
+                        btnOk.setText(confirmText);
+
                         // showCancel为true并cancelText传入时显示取消按钮
                         if (showCancel && !cancelText.isEmpty()) {
                             TextView btnCancel;
@@ -89,8 +95,6 @@ public class UtsDialog {
                             }
                         });
                         customWebView.loadData(htmlStr, "text/html", "UTF-8");
-                        TextView btnOk;
-                        btnOk = v.findViewById(R.id.btn_ok);
                         btnOk.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
