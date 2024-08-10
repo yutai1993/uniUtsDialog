@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.kongzue.dialogx.DialogX;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.dialogs.PopTip;
-import com.kongzue.dialogx.interfaces.DialogXStyle;
 import com.kongzue.dialogx.interfaces.OnBindView;
 import com.kongzue.dialogx.style.IOSStyle;
 import org.json.JSONObject;
@@ -19,7 +18,7 @@ public class UtsDialog {
         //初始化
         DialogX.init(context);
     }
-    public static void dialogShow(JSONObject options, DialogCallback callback){
+    public static CustomDialog dialogShow(JSONObject options, DialogCallback callback){
         // 标题title
         String title = options.optString("title");
         // 内容content
@@ -35,7 +34,7 @@ public class UtsDialog {
         boolean cancelable = options.optBoolean("cancelable", false);
         // 弹窗标识ID 用于回调回传
         String dialogId = options.optString("id");
-        CustomDialog.show(new OnBindView<CustomDialog>(R.layout.layout_custom_dialog) {
+        return CustomDialog.show(new OnBindView<CustomDialog>(R.layout.layout_custom_dialog) {
                     @Override
                     public void onBind(final CustomDialog dialog, View v) {
                         // 设置title
@@ -120,6 +119,7 @@ public class UtsDialog {
                 .setAutoUnsafePlacePadding(false);
 
     }
+
     public static void tip(String message){
         PopTip.build()
                 .setStyle(IOSStyle.style())

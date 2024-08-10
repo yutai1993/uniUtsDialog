@@ -20,9 +20,7 @@ import java.lang.ref.WeakReference;
 public class Progress {
     private static WeakReference<ProgressBar> progressBarRef;
 
-    private static CustomDialog progressDialog;
-
-    public static void show(Context context, JSONObject options) {
+    public static CustomDialog show(Context context, JSONObject options) {
         // 是否可以返回取消
         boolean cancelable = options.optBoolean("cancelable", false);
         // 进度条初始进度
@@ -33,7 +31,7 @@ public class Progress {
         String backgroundColor = options.optString("bgColor", "#e5e8ea");
         // 进度条颜色
         String progressColor = options.optString("color", "#0000FF");
-        progressDialog = CustomDialog.build()
+        return CustomDialog.build()
                 .setCustomView(new OnBindView<CustomDialog>(R.layout.progress_custom) {
                     @Override
                     public void onBind(final CustomDialog dialog, View v) {
@@ -103,9 +101,4 @@ public class Progress {
         }
     }
 
-    public static void dismiss() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-        }
-    }
 }
