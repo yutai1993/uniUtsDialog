@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import com.kongzue.dialogx.dialogs.CustomDialog;
 import com.kongzue.dialogx.interfaces.OnBindView;
 import org.json.JSONObject;
@@ -20,13 +21,18 @@ import java.lang.ref.WeakReference;
 public class Progress {
     private static WeakReference<ProgressBar> progressBarRef;
 
-    public static CustomDialog show(Context context, JSONObject options) {
+    public static CustomDialog show(Context context, JSONObject options, ProgressCallback callback) {
         // 是否可以返回取消
         boolean cancelable = options.optBoolean("cancelable", false);
         // 进度条初始进度
         int progress = options.optInt("progress", 0);
         // 进度条高度
         int height = options.optInt("height", 50);
+        int topMargin = options.optInt("topMargin", 20);
+        // 标题
+        String title = options.optString("title", "发现新版本");
+        // 内容
+        String htmlString = options.optString("htmlString", "");
         // 进度条背景色
         String backgroundColor = options.optString("bgColor", "#e5e8ea");
         // 进度条颜色
@@ -45,14 +51,15 @@ public class Progress {
                             }
                         });
 
+                        // 标题
+                        TextView tvTitle = v.findViewById(R.id.tv_title);
+                        tvTitle.setText(title);
                         // 内容区容器
                         LinearLayout containerLayout = v.findViewById(R.id.container_layout);
-                        containerLayout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // 在这里处理点击事件
-                            }
-                        });
+
+                        // webview
+                        CustomWebView customWebView = (CustomWebView) v.findViewById(R.id.webview);
+                        customWebView.loadData(htmlString, "text/html", "UTF-8");
 
                         // 创建并添加水平进度条
                         ProgressBar progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
@@ -60,7 +67,7 @@ public class Progress {
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 height); // 设置高度为50px
                         params.gravity = Gravity.CENTER;
-                        params.topMargin = 20; // 设置paddingTop为20px
+                        params.topMargin = topMargin; // 设置paddingTop为20px
                         progressBar.setLayoutParams(params);
                         progressBar.setMax(100); // 设置最大值
                         progressBar.setProgress(progress); // 设置当前进度
@@ -80,7 +87,16 @@ public class Progress {
                         layerDrawable.setId(1, android.R.id.progress);
                         progressBar.setProgressDrawable(layerDrawable);
 
-                        containerLayout.addView(progressBar);
+                        TextView btnOk = v.findViewById(R.id.btn_ok);
+                        btnOk.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // 隐藏自身按钮
+                                v.setVisibility(View.GONE);
+                                containerLayout.addView(progressBar);
+                                callback.onConfirm();
+                            }
+                        });
 
                         // 使用弱引用持有 ProgressBar
                         progressBarRef = new WeakReference<>(progressBar);

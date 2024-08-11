@@ -8,35 +8,69 @@
               android:paddingRight="30dp"
               android:gravity="center"
               android:orientation="vertical">
-
     <LinearLayout
-            android:id="@+id/container_layout"
+            android:id="@+id/container_layout_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/rounded_corners"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:paddingTop="8dp"
             android:paddingBottom="10dp"
             android:gravity="center">
-
-        <!-- 标题居中 -->
-        <TextView
-                android:id="@+id/tv_title"
+        <ImageView
+                android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="下载中"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingBottom="8dp"
-                android:textColor="#9B9999"
-                android:paddingRight="16dp"/>
-        <View
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/upgrade_bg"
+                android:contentDescription="APP升级背景图像"/>
+        <LinearLayout
+                android:id="@+id/container_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0.5px"
-                android:background="#B6B6B6"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_progress_corners"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:gravity="center">
+            <!-- 标题居中 -->
+            <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="发现新版本"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:paddingLeft="16dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="#9B9999"
+                    android:paddingRight="16dp"/>
+            <!-- 内容 -->
+            <com.qishi.utsdialog.CustomWebView
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"/>
+
+            <TextView
+                    android:id="@+id/btn_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="立即升级"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rounded_corners_btn_ok"
+                    android:textColor="#fff"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
