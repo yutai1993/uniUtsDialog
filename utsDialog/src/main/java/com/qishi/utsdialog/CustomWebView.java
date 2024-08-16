@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.webkit.WebView;
 
 public class CustomWebView extends WebView {
-    private int mMaxHeight = 500; // 这是你的最大高度
+    private int mMaxHeight = convertDpToPx(400); // 这是你的最大高度
 
     public CustomWebView(Context context) {
         super(context);
@@ -23,5 +23,9 @@ public class CustomWebView extends WebView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxHeight, MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    private int convertDpToPx(int dp) {
+        return (int) (dp * getResources().getDisplayMetrics().density);
     }
 }
